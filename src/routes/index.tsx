@@ -20,7 +20,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [mode, setMode] = useState<"shop" | "cust">("shop");
-  useEffect(() => { seedIfNeeded(); }, []);
+  const [ready, setReady] = useState(false);
+  useEffect(() => { seedIfNeeded(); setReady(true); }, []);
 
   return (
     <div className={mode === "shop" ? "mode-shop" : "mode-cust"}>
@@ -50,7 +51,7 @@ function Index() {
           </div>
         </div>
       </header>
-      {mode === "shop" ? <ShopkeeperApp /> : <CustomerApp />}
+      {ready && (mode === "shop" ? <ShopkeeperApp /> : <CustomerApp />)}
     </div>
   );
 }
