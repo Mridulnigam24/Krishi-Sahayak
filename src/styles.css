@@ -142,3 +142,17 @@
     color: var(--color-foreground);
   }
 }
+
+/* DukaanMitra theme tokens */
+.mode-shop {
+  --brand: #16a34a;
+  --brand-soft: #dcfce7;
+  --brand-dark: #15803d;
+  --brand-fg: #ffffff;
+}
+.mode-cust {
+  --brand: #7c3aed;
+  --brand-soft: #ede9fe;
+  --brand-dark: #6d28d9;
+  --brand-fg: #ffffff;
+}
