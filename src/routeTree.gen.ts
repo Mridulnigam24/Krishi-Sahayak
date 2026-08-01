@@ -9,12 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as MarketRouteImport } from './routes/market'
 import { Route as DukaanRouteImport } from './routes/dukaan'
 import { Route as DiseaseRouteImport } from './routes/disease'
 import { Route as CropsRouteImport } from './routes/crops'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DukaanRoute = DukaanRouteImport.update({
   id: '/dukaan',
   path: '/dukaan',
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +78,30 @@ export interface FileRoutesById {
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
-  id: '__root__' | '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
+  to: '/' | '/chat' | '/crops' | '/disease' | '/dukaan' | '/market' | '/weather'
+  id:
+    | '__root__'
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +110,26 @@ export interface RootRouteChildren {
   CropsRoute: typeof CropsRoute
   DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
+  MarketRoute: typeof MarketRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dukaan': {
       id: '/dukaan'
       path: '/dukaan'
@@ -125,6 +174,8 @@ const rootRouteChildren: RootRouteChildren = {
   CropsRoute: CropsRoute,
   DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
+  MarketRoute: MarketRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
