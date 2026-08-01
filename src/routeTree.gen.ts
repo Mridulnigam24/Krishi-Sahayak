@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DukaanRouteImport } from './routes/dukaan'
+import { Route as DiseaseRouteImport } from './routes/disease'
 import { Route as CropsRouteImport } from './routes/crops'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 
 const DukaanRoute = DukaanRouteImport.update({
@@ -18,9 +20,19 @@ const DukaanRoute = DukaanRouteImport.update({
   path: '/dukaan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiseaseRoute = DiseaseRouteImport.update({
+  id: '/disease',
+  path: '/disease',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CropsRoute = CropsRouteImport.update({
   id: '/crops',
   path: '/crops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +43,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crops' | '/dukaan'
+  fullPaths: '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crops' | '/dukaan'
-  id: '__root__' | '/' | '/crops' | '/dukaan'
+  to: '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
+  id: '__root__' | '/' | '/chat' | '/crops' | '/disease' | '/dukaan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatRoute: typeof ChatRoute
   CropsRoute: typeof CropsRoute
+  DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
 }
 
@@ -68,11 +88,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DukaanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/disease': {
+      id: '/disease'
+      path: '/disease'
+      fullPath: '/disease'
+      preLoaderRoute: typeof DiseaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/crops': {
       id: '/crops'
       path: '/crops'
       fullPath: '/crops'
       preLoaderRoute: typeof CropsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatRoute: ChatRoute,
   CropsRoute: CropsRoute,
+  DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
 }
 export const routeTree = rootRouteImport
