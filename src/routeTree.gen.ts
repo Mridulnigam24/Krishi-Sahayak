@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as DukaanRouteImport } from './routes/dukaan'
+import { Route as DiseaseRouteImport } from './routes/disease'
+import { Route as CropsRouteImport } from './routes/crops'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchemesRoute = SchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DukaanRoute = DukaanRouteImport.update({
+  id: '/dukaan',
+  path: '/dukaan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiseaseRoute = DiseaseRouteImport.update({
+  id: '/disease',
+  path: '/disease',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CropsRoute = CropsRouteImport.update({
+  id: '/crops',
+  path: '/crops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
+  '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
+  '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
+  '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
+  '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
+  '/crops': typeof CropsRoute
+  '/disease': typeof DiseaseRoute
+  '/dukaan': typeof DukaanRoute
+  '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/profile'
+    | '/schemes'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/profile'
+    | '/schemes'
+    | '/weather'
+  id:
+    | '__root__'
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/profile'
+    | '/schemes'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatRoute: typeof ChatRoute
+  CropsRoute: typeof CropsRoute
+  DiseaseRoute: typeof DiseaseRoute
+  DukaanRoute: typeof DukaanRoute
+  MarketRoute: typeof MarketRoute
+  ProfileRoute: typeof ProfileRoute
+  SchemesRoute: typeof SchemesRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schemes': {
+      id: '/schemes'
+      path: '/schemes'
+      fullPath: '/schemes'
+      preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dukaan': {
+      id: '/dukaan'
+      path: '/dukaan'
+      fullPath: '/dukaan'
+      preLoaderRoute: typeof DukaanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disease': {
+      id: '/disease'
+      path: '/disease'
+      fullPath: '/disease'
+      preLoaderRoute: typeof DiseaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crops': {
+      id: '/crops'
+      path: '/crops'
+      fullPath: '/crops'
+      preLoaderRoute: typeof CropsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatRoute: ChatRoute,
+  CropsRoute: CropsRoute,
+  DiseaseRoute: DiseaseRoute,
+  DukaanRoute: DukaanRoute,
+  MarketRoute: MarketRoute,
+  ProfileRoute: ProfileRoute,
+  SchemesRoute: SchemesRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
