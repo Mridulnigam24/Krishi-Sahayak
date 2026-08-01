@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MarketRouteImport } from './routes/market'
 import { Route as DukaanRouteImport } from './routes/dukaan'
 import { Route as DiseaseRouteImport } from './routes/disease'
@@ -20,6 +22,16 @@ import { Route as IndexRouteImport } from './routes/index'
 const WeatherRoute = WeatherRouteImport.update({
   id: '/weather',
   path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchemesRoute = SchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketRoute = MarketRouteImport.update({
@@ -60,6 +72,8 @@ export interface FileRoutesByFullPath {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +83,8 @@ export interface FileRoutesByTo {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
@@ -79,6 +95,8 @@ export interface FileRoutesById {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/market': typeof MarketRoute
+  '/profile': typeof ProfileRoute
+  '/schemes': typeof SchemesRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
@@ -90,9 +108,20 @@ export interface FileRouteTypes {
     | '/disease'
     | '/dukaan'
     | '/market'
+    | '/profile'
+    | '/schemes'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chat' | '/crops' | '/disease' | '/dukaan' | '/market' | '/weather'
+  to:
+    | '/'
+    | '/chat'
+    | '/crops'
+    | '/disease'
+    | '/dukaan'
+    | '/market'
+    | '/profile'
+    | '/schemes'
+    | '/weather'
   id:
     | '__root__'
     | '/'
@@ -101,6 +130,8 @@ export interface FileRouteTypes {
     | '/disease'
     | '/dukaan'
     | '/market'
+    | '/profile'
+    | '/schemes'
     | '/weather'
   fileRoutesById: FileRoutesById
 }
@@ -111,6 +142,8 @@ export interface RootRouteChildren {
   DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
   MarketRoute: typeof MarketRoute
+  ProfileRoute: typeof ProfileRoute
+  SchemesRoute: typeof SchemesRoute
   WeatherRoute: typeof WeatherRoute
 }
 
@@ -121,6 +154,20 @@ declare module '@tanstack/react-router' {
       path: '/weather'
       fullPath: '/weather'
       preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schemes': {
+      id: '/schemes'
+      path: '/schemes'
+      fullPath: '/schemes'
+      preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/market': {
@@ -175,6 +222,8 @@ const rootRouteChildren: RootRouteChildren = {
   DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
   MarketRoute: MarketRoute,
+  ProfileRoute: ProfileRoute,
+  SchemesRoute: SchemesRoute,
   WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
