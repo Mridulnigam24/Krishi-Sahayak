@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DukaanRouteImport } from './routes/dukaan'
+import { Route as CropsRouteImport } from './routes/crops'
 import { Route as IndexRouteImport } from './routes/index'
 
 const DukaanRoute = DukaanRouteImport.update({
   id: '/dukaan',
   path: '/dukaan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CropsRoute = CropsRouteImport.update({
+  id: '/crops',
+  path: '/crops',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/crops': typeof CropsRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/crops': typeof CropsRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/crops': typeof CropsRoute
   '/dukaan': typeof DukaanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dukaan'
+  fullPaths: '/' | '/crops' | '/dukaan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dukaan'
-  id: '__root__' | '/' | '/dukaan'
+  to: '/' | '/crops' | '/dukaan'
+  id: '__root__' | '/' | '/crops' | '/dukaan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CropsRoute: typeof CropsRoute
   DukaanRoute: typeof DukaanRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/dukaan'
       fullPath: '/dukaan'
       preLoaderRoute: typeof DukaanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crops': {
+      id: '/crops'
+      path: '/crops'
+      fullPath: '/crops'
+      preLoaderRoute: typeof CropsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CropsRoute: CropsRoute,
   DukaanRoute: DukaanRoute,
 }
 export const routeTree = rootRouteImport
