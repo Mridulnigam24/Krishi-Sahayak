@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Send, MessageCircle, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
 import Layout from "@/components/krishi/Layout";
 import { useLang } from "@/lib/krishi/i18n";
 import { askKrishiAI } from "@/lib/krishi/ai.functions";
@@ -99,15 +100,15 @@ function ChatPage() {
 
           {messages.map((m, i) => (
             <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
-              <div
-                className={
-                  m.role === "user"
-                    ? "max-w-[85%] whitespace-pre-wrap rounded-2xl bg-primary px-4 py-2.5 text-sm text-primary-foreground"
-                    : "max-w-[90%] whitespace-pre-wrap text-sm leading-relaxed text-foreground"
-                }
-              >
-                {m.content}
-              </div>
+              {m.role === "user" ? (
+                <div className="max-w-[85%] whitespace-pre-wrap rounded-2xl bg-primary px-4 py-2.5 text-sm text-primary-foreground">
+                  {m.content}
+                </div>
+              ) : (
+                <div className="ks-md max-w-[90%] text-sm leading-relaxed text-foreground">
+                  <ReactMarkdown>{m.content}</ReactMarkdown>
+                </div>
+              )}
             </div>
           ))}
 
