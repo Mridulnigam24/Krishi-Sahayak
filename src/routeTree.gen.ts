@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as SoilRouteImport } from './routes/soil'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PlannerRouteImport } from './routes/planner'
@@ -32,6 +33,11 @@ const WeatherRoute = WeatherRouteImport.update({
 const SoilRoute = SoilRouteImport.update({
   id: '/soil',
   path: '/soil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SchemesRoute = SchemesRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
     | '/soil'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
     | '/soil'
     | '/weather'
   id:
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
     | '/soil'
     | '/weather'
   fileRoutesById: FileRoutesById
@@ -208,6 +220,7 @@ export interface RootRouteChildren {
   PlannerRoute: typeof PlannerRoute
   ProfileRoute: typeof ProfileRoute
   SchemesRoute: typeof SchemesRoute
+  ServicesRoute: typeof ServicesRoute
   SoilRoute: typeof SoilRoute
   WeatherRoute: typeof WeatherRoute
 }
@@ -226,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/soil'
       fullPath: '/soil'
       preLoaderRoute: typeof SoilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/schemes': {
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlannerRoute: PlannerRoute,
   ProfileRoute: ProfileRoute,
   SchemesRoute: SchemesRoute,
+  ServicesRoute: ServicesRoute,
   SoilRoute: SoilRoute,
   WeatherRoute: WeatherRoute,
 }
