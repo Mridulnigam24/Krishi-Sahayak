@@ -16,6 +16,7 @@ import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as MarketRouteImport } from './routes/market'
+import { Route as LivestockRouteImport } from './routes/livestock'
 import { Route as FarmRouteImport } from './routes/farm'
 import { Route as DukaanRouteImport } from './routes/dukaan'
 import { Route as DiseaseRouteImport } from './routes/disease'
@@ -58,6 +59,11 @@ const PlannerRoute = PlannerRouteImport.update({
 const MarketRoute = MarketRouteImport.update({
   id: '/market',
   path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LivestockRoute = LivestockRouteImport.update({
+  id: '/livestock',
+  path: '/livestock',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FarmRoute = FarmRouteImport.update({
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
   '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
   '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/disease'
     | '/dukaan'
     | '/farm'
+    | '/livestock'
     | '/market'
     | '/planner'
     | '/profile'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/disease'
     | '/dukaan'
     | '/farm'
+    | '/livestock'
     | '/market'
     | '/planner'
     | '/profile'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/disease'
     | '/dukaan'
     | '/farm'
+    | '/livestock'
     | '/market'
     | '/planner'
     | '/profile'
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
   FarmRoute: typeof FarmRoute
+  LivestockRoute: typeof LivestockRoute
   MarketRoute: typeof MarketRoute
   PlannerRoute: typeof PlannerRoute
   ProfileRoute: typeof ProfileRoute
@@ -274,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/market'
       fullPath: '/market'
       preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/livestock': {
+      id: '/livestock'
+      path: '/livestock'
+      fullPath: '/livestock'
+      preLoaderRoute: typeof LivestockRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/farm': {
@@ -344,6 +364,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
   FarmRoute: FarmRoute,
+  LivestockRoute: LivestockRoute,
   MarketRoute: MarketRoute,
   PlannerRoute: PlannerRoute,
   ProfileRoute: ProfileRoute,
