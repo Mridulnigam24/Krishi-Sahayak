@@ -10,18 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as SoilRouteImport } from './routes/soil'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as MarketRouteImport } from './routes/market'
+import { Route as LivestockRouteImport } from './routes/livestock'
+import { Route as FarmRouteImport } from './routes/farm'
 import { Route as DukaanRouteImport } from './routes/dukaan'
 import { Route as DiseaseRouteImport } from './routes/disease'
 import { Route as CropsRouteImport } from './routes/crops'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as ChatRouteImport } from './routes/chat'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WeatherRoute = WeatherRouteImport.update({
   id: '/weather',
   path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoilRoute = SoilRouteImport.update({
+  id: '/soil',
+  path: '/soil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SchemesRoute = SchemesRouteImport.update({
@@ -34,9 +52,24 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MarketRoute = MarketRouteImport.update({
   id: '/market',
   path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LivestockRoute = LivestockRouteImport.update({
+  id: '/livestock',
+  path: '/livestock',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FarmRoute = FarmRouteImport.update({
+  id: '/farm',
+  path: '/farm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DukaanRoute = DukaanRouteImport.update({
@@ -54,9 +87,24 @@ const CropsRoute = CropsRouteImport.update({
   path: '/crops',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -67,83 +115,139 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
+  '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
+  '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
+  '/farm': typeof FarmRoute
+  '/livestock': typeof LivestockRoute
   '/market': typeof MarketRoute
+  '/planner': typeof PlannerRoute
   '/profile': typeof ProfileRoute
   '/schemes': typeof SchemesRoute
+  '/services': typeof ServicesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/alerts'
+    | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
+    | '/farm'
+    | '/livestock'
     | '/market'
+    | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
+    | '/soil'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/alerts'
+    | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
+    | '/farm'
+    | '/livestock'
     | '/market'
+    | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
+    | '/soil'
     | '/weather'
   id:
     | '__root__'
     | '/'
+    | '/alerts'
+    | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
+    | '/farm'
+    | '/livestock'
     | '/market'
+    | '/planner'
     | '/profile'
     | '/schemes'
+    | '/services'
+    | '/soil'
     | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertsRoute: typeof AlertsRoute
+  AssistantRoute: typeof AssistantRoute
   ChatRoute: typeof ChatRoute
+  CommunityRoute: typeof CommunityRoute
   CropsRoute: typeof CropsRoute
   DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
+  FarmRoute: typeof FarmRoute
+  LivestockRoute: typeof LivestockRoute
   MarketRoute: typeof MarketRoute
+  PlannerRoute: typeof PlannerRoute
   ProfileRoute: typeof ProfileRoute
   SchemesRoute: typeof SchemesRoute
+  ServicesRoute: typeof ServicesRoute
+  SoilRoute: typeof SoilRoute
   WeatherRoute: typeof WeatherRoute
 }
 
@@ -154,6 +258,20 @@ declare module '@tanstack/react-router' {
       path: '/weather'
       fullPath: '/weather'
       preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soil': {
+      id: '/soil'
+      path: '/soil'
+      fullPath: '/soil'
+      preLoaderRoute: typeof SoilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/schemes': {
@@ -170,11 +288,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/market': {
       id: '/market'
       path: '/market'
       fullPath: '/market'
       preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/livestock': {
+      id: '/livestock'
+      path: '/livestock'
+      fullPath: '/livestock'
+      preLoaderRoute: typeof LivestockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/farm': {
+      id: '/farm'
+      path: '/farm'
+      fullPath: '/farm'
+      preLoaderRoute: typeof FarmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dukaan': {
@@ -198,11 +337,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CropsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat': {
       id: '/chat'
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -217,25 +377,23 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertsRoute: AlertsRoute,
+  AssistantRoute: AssistantRoute,
   ChatRoute: ChatRoute,
+  CommunityRoute: CommunityRoute,
   CropsRoute: CropsRoute,
   DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
+  FarmRoute: FarmRoute,
+  LivestockRoute: LivestockRoute,
   MarketRoute: MarketRoute,
+  PlannerRoute: PlannerRoute,
   ProfileRoute: ProfileRoute,
   SchemesRoute: SchemesRoute,
+  ServicesRoute: ServicesRoute,
+  SoilRoute: SoilRoute,
   WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

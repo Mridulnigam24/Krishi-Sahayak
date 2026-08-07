@@ -39,13 +39,31 @@ export const dict: Dict = {
   contact: { en: "Contact", hi: "संपर्क" },
   about: { en: "About", hi: "हमारे बारे में" },
   language: { en: "Language", hi: "भाषा" },
+  assistant: { en: "AI Assistant", hi: "AI सहायक" },
+  soil: { en: "Soil & Fertiliser", hi: "मिट्टी व खाद" },
+  planner: { en: "Crop Planner", hi: "फसल योजना" },
+  farm: { en: "My Farm", hi: "मेरा खेत" },
+  alerts: { en: "Alerts", hi: "चेतावनी" },
+  services: { en: "Nearby", hi: "आस-पास" },
+  livestock: { en: "Livestock", hi: "पशुधन" },
+  hub: { en: "Community", hi: "समुदाय" },
+  admin: { en: "Admin", hi: "एडमिन" },
+  more: { en: "More", hi: "और" },
+  calendar: { en: "Calendar", hi: "कैलेंडर" },
+  diary: { en: "Farm Diary", hi: "खेत डायरी" },
+  expenses: { en: "Expenses", hi: "खर्च" },
+  analytics: { en: "Analytics", hi: "विश्लेषण" },
+  marketplace: { en: "Marketplace", hi: "बाज़ार" },
+  learn: { en: "Learning Hub", hi: "सीखें" },
+  satellite: { en: "Satellite", hi: "सैटेलाइट" },
+  yieldp: { en: "Yield Prediction", hi: "उपज अनुमान" },
 };
 
-type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: string) => string };
-const LangCtx = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
+type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: string) => string; L: (en: string, hi: string) => string };
+const LangCtx = createContext<Ctx>({ lang: "hi", setLang: () => {}, t: (k) => k, L: (_en, hi) => hi });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("hi");
   useEffect(() => {
     const s = localStorage.getItem("ks_lang");
     if (s === "hi" || s === "en") setLangState(s);
@@ -55,7 +73,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("ks_lang", l);
   };
   const t = (k: string) => dict[k]?.[lang] ?? k;
-  return <LangCtx.Provider value={{ lang, setLang, t }}>{children}</LangCtx.Provider>;
+  const L = (en: string, hi: string) => (lang === "hi" ? hi : en);
+  return <LangCtx.Provider value={{ lang, setLang, t, L }}>{children}</LangCtx.Provider>;
 }
 
 export function useLang() {
