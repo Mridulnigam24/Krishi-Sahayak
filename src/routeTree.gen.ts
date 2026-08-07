@@ -21,6 +21,7 @@ import { Route as FarmRouteImport } from './routes/farm'
 import { Route as DukaanRouteImport } from './routes/dukaan'
 import { Route as DiseaseRouteImport } from './routes/disease'
 import { Route as CropsRouteImport } from './routes/crops'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as AlertsRouteImport } from './routes/alerts'
@@ -86,6 +87,11 @@ const CropsRoute = CropsRouteImport.update({
   path: '/crops',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/chat': typeof ChatRoute
+  '/community': typeof CommunityRoute
   '/crops': typeof CropsRoute
   '/disease': typeof DiseaseRoute
   '/dukaan': typeof DukaanRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/assistant'
     | '/chat'
+    | '/community'
     | '/crops'
     | '/disease'
     | '/dukaan'
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   AlertsRoute: typeof AlertsRoute
   AssistantRoute: typeof AssistantRoute
   ChatRoute: typeof ChatRoute
+  CommunityRoute: typeof CommunityRoute
   CropsRoute: typeof CropsRoute
   DiseaseRoute: typeof DiseaseRoute
   DukaanRoute: typeof DukaanRoute
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CropsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat': {
       id: '/chat'
       path: '/chat'
@@ -360,6 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlertsRoute: AlertsRoute,
   AssistantRoute: AssistantRoute,
   ChatRoute: ChatRoute,
+  CommunityRoute: CommunityRoute,
   CropsRoute: CropsRoute,
   DiseaseRoute: DiseaseRoute,
   DukaanRoute: DukaanRoute,
