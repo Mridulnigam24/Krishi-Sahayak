@@ -18,7 +18,7 @@ React + TypeScript + Tailwind CSS + shadcn/ui. No backend required — data pers
 You'll need [Node.js](https://nodejs.org) and npm (install via [nvm](https://github.com/nvm-sh/nvm) if needed).
 
 ```bash
-git clone <this-repository-url>
+git clone <https://github.com/Mridulnigam24/Krishi-Sahayak>
 cd <repository-name>
 npm i
 npm run dev
