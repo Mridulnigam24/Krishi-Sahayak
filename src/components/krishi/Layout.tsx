@@ -22,7 +22,7 @@ export const NAV = [
   { to: "/services", key: "services", icon: MapPin },
   { to: "/livestock", key: "livestock", icon: Beef },
   { to: "/community", key: "hub", icon: Users },
-  { to: "/admin", key: "admin", icon: Shield },
+  { to: "/profile", key: "profile", icon: Shield },
 ] as const;
 
 const PRIMARY = ["/crops", "/disease", "/weather", "/market", "/farm"];
