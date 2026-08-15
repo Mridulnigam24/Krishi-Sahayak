@@ -19,14 +19,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.classList.toggle("dark", initial === "dark");
   }, []);
 
+  // Side effects must live outside the state updater — React invokes updaters
+  // twice in StrictMode, which cancelled the class/localStorage change.
   const toggle = () => {
-    setMode((m) => {
-      const next: Mode = m === "dark" ? "light" : "dark";
-      localStorage.setItem("ks_theme", next);
-      document.documentElement.classList.toggle("dark", next === "dark");
-      return next;
-    });
+    const next: Mode = mode === "dark" ? "light" : "dark";
+    setMode(next);
   };
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", mode === "dark");
+    localStorage.setItem("ks_theme", mode);
+  }, [mode]);
 
   return <ThemeCtx.Provider value={{ mode, toggle }}>{children}</ThemeCtx.Provider>;
 }
